@@ -33,7 +33,7 @@ Going back to what I wrote earlier
 
 > the selector of the current scope becomes equivalent to the extended selector in ***all contexts***
 
-What this means is that any time the btn class is used in the scss of the current compilation unit, the Sass compiler will copy the selector that contains it, and replace the btn class with the current scope selector. This causes a few issues.
+What this means is that any time the `btn` class is used in the scss of the current compilation unit, the Sass compiler will copy the selector that contains it, and replace the `btn` class with the current scope selector. This causes a few issues.
 
 ### Slow compilations and bloated output
 
@@ -163,7 +163,7 @@ Notice how the generated code now contains these selectors:
 ```
 Even though the `my-btn` class will probably never be used in that context.
 
-Consider that every time you extend the `btn` class, your selector will be copy-pasted in all the places that target the `.btn` selector, if you have 250 such selectors (as is the case in Odoo at the time of writing) this means that for every character in your selector, you're adding 1kb of compiled css. For a nested selector whose current selector scope is 40 characters long, which is the length of the selector in the example above, that's 10kb of generated css for a single @extend directive.
+Considering that every time you extend the `btn` class, your selector will be copy-pasted in all the places that target the `.btn` selector, if you have 250 such selectors (as is the case in Odoo at the time of writing) this means that for every four characters in your selector, you're adding 1kb of compiled css. For a nested selector whose current selector scope is 40 characters long, which is the length of the selector in the example above, that's 10kb of generated css for a single `@extend` directive.
 
 Not only is this bad for load times as there is more css to transmit over the wire, it also forces the browser to parse all that css, and means the browser has to check elements against those classes which slows down page layout.
 
